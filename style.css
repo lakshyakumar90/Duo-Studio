@@ -16,6 +16,10 @@ body {
   width: 100%;
 }
 
+.icon {
+  fill: #000; /* Replace with your desired color */
+}
+
 h1 {
   margin: 0;
 }
