@@ -38,6 +38,144 @@ function loco() {
   ScrollTrigger.refresh();
 }
 
+let cursor = document.querySelector("#cursor");
+function cursorAnimation() {
+  document.addEventListener("mousemove", function (details) {
+    const x = details.clientX - 15 + "px";
+    const y = details.clientY - 15 + "px";
+    gsap.to(cursor, {
+      x: x,
+      y: y,
+    });
+  });
+}
+
+function navAnimation() {
+  document
+    .querySelector("#nav #logo")
+    .addEventListener("mouseenter", function () {
+      gsap.to(cursor, {
+        height: "33px",
+        width: "33px",
+      });
+    });
+  document
+    .querySelector("#nav #logo")
+    .addEventListener("mouseleave", function () {
+      gsap.to(cursor, {
+        height: "16px",
+        width: "16px",
+      });
+    });
+
+  document
+    .querySelector("#nav #nav-links")
+    .addEventListener("mouseenter", function () {
+      gsap.to(cursor, {
+        height: "33px",
+        width: "33px",
+      });
+    });
+  document
+    .querySelector("#nav #nav-links")
+    .addEventListener("mouseleave", function () {
+      gsap.to(cursor, {
+        height: "16px",
+        width: "16px",
+      });
+    });
+
+  document
+    .querySelector("#nav #circle-div")
+    .addEventListener("mouseenter", function () {
+      gsap.to(cursor, {
+        height: "33px",
+        width: "33px",
+      });
+    });
+  document
+    .querySelector("#nav #circle-div")
+    .addEventListener("mouseleave", function () {
+      gsap.to(cursor, {
+        height: "16px",
+        width: "16px",
+      });
+    });
+
+    document.querySelectorAll("#nav #nav-links a, #nav #circle-div").forEach((elem) => {
+      elem.addEventListener("mouseenter", () => {
+          let word = elem.getAttribute('data-word');
+          let purple = document.querySelector(".purple");
+
+          purple.innerHTML = `
+              <div id="purple-home">
+                  <div class="marquee-container">
+                      <h4>${word}</h4>
+                      <h4>${word}</h4>
+                      <h4>${word}</h4>
+                      <h4>${word}</h4>
+                      <h4>${word}</h4>
+                      <h4>${word}</h4>
+                      <h4>${word}</h4>
+                      <h4>${word}</h4>
+                      <h4>${word}</h4>
+                      <h4>${word}</h4>
+                      <h4>${word}</h4>
+                      <h4>${word}</h4>
+                      <h4>${word}</h4>
+                  </div>
+              </div>
+          `;
+          purple.style.opacity = 1;
+      });
+
+  
+      elem.addEventListener("mouseleave", () => {
+        let purple = document.querySelector(".purple");
+        purple.style.opacity = 0;
+      });
+
+    });
+    };
+
+function videoAnimation() {
+  document
+    .querySelector("#page1 video")
+    .addEventListener("mouseenter", function () {
+      cursor.textContent = `Sound on`;
+      gsap.to(cursor, {
+        height: "27px",
+        width: "100px",
+        borderRadius: "50px",
+      });
+      let counter = 0;
+      document
+        .querySelector("#page1 video")
+        .addEventListener("click", function () {
+          if (counter == 0) {
+            document.querySelector("#page1 video").muted = false;
+            counter = 1;
+            cursor.textContent = `Sound off`;
+          } else {
+            document.querySelector("#page1 video").muted = true;
+            counter = 0;
+            cursor.textContent = `Sound on`;
+          }
+        });
+    });
+
+  document
+    .querySelector("#page1 video")
+    .addEventListener("mouseleave", function () {
+      cursor.textContent = ``;
+      gsap.to(cursor, {
+        height: "16px",
+        width: "16px",
+        borderRadius: "50%",
+      });
+    });
+}
+
 function page1Animation() {
   gsap.from("#page1, #nav", {
     y: 10,
@@ -142,9 +280,161 @@ function page2Animation() {
       });
     });
   });
+
+  document
+    .querySelector("#page2 #content #content-left")
+    .addEventListener("mouseenter", function () {
+      gsap.to(cursor, {
+        height: "33px",
+        width: "33px",
+      });
+    });
+  document
+    .querySelector("#page2 #content #content-left")
+    .addEventListener("mouseleave", function () {
+      gsap.to(cursor, {
+        height: "16px",
+        width: "16px",
+      });
+    });
+
+  document
+    .querySelector("#page2>button")
+    .addEventListener("mouseenter", function () {
+      gsap.to(cursor, {
+        height: "33px",
+        width: "33px",
+      });
+    });
+  document
+    .querySelector("#page2>button")
+    .addEventListener("mouseleave", function () {
+      gsap.to(cursor, {
+        height: "16px",
+        width: "16px",
+      });
+    });
 }
 
-function page3Animation() {
+function featuredDiv() {
+  const cards = document.querySelectorAll("#page3 #card-container .card");
+  cards.forEach((card) => {
+    card.addEventListener("mouseenter", function () {
+      cursor.textContent = `View`;
+      gsap.to(cursor, {
+        height: "30px",
+        width: "60px",
+        borderRadius: "50px",
+      });
+    });
+
+    card.addEventListener("mouseleave", function () {
+      cursor.textContent = ``;
+      gsap.to(cursor, {
+        height: "16px",
+        width: "16px",
+        borderRadius: "50%",
+      });
+    });
+  });
+
+  document
+    .querySelector("#page3 #card-container #page3-para button")
+    .addEventListener("mouseenter", function () {
+      console.log("h3edbwf");
+      gsap.to(cursor, {
+        height: "33px",
+        width: "33px",
+      });
+    });
+
+  document
+    .querySelector("#page3 #card-container #page3-para button")
+    .addEventListener("mouseleave", function () {
+      gsap.to(cursor, {
+        height: "16px",
+        width: "16px",
+      });
+    });
+}
+
+function hoverButton(string) {
+  var hoverMouse = function ($el) {
+    $el.each(function () {
+      var $self = $(this);
+      var hover = false;
+      var offsetHoverMax = $self.attr("offset-hover-max") || 0.7;
+      var offsetHoverMin = $self.attr("offset-hover-min") || 0.5;
+
+      var attachEventsListener = function () {
+        $(window).on("mousemove", function (e) {
+          var hoverArea = hover ? offsetHoverMax : offsetHoverMin;
+
+          var cursor = {
+            x: e.clientX,
+            y: e.clientY - $(window).scrollTop(),
+          };
+
+          var width = $self.outerWidth();
+          var height = $self.outerHeight();
+
+          var offset = $self.offset();
+          var elPos = {
+            x: offset.left + width / 2,
+            y: offset.top + height / 2,
+          };
+
+          var x = cursor.x - elPos.x;
+          var y = cursor.y - elPos.y;
+
+          var dist = Math.sqrt(x * x + y * y);
+
+          var mutHover = false;
+
+          if (dist < width * hoverArea) {
+            mutHover = true;
+            if (!hover) {
+              hover = true;
+            }
+            onHover(x, y);
+          }
+
+          if (!mutHover && hover) {
+            onLeave();
+            hover = false;
+          }
+        });
+      };
+
+      var onHover = function (x, y) {
+        console.log("onHover", x, y); // Debugging log
+        TweenMax.to($self, 0.4, {
+          x: x * 0.8,
+          y: y * 0.8,
+          rotation: x * 0.05,
+          ease: Power2.easeOut,
+        });
+      };
+
+      var onLeave = function () {
+        console.log("onLeave"); // Debugging log
+        TweenMax.to($self, 0.7, {
+          x: 0,
+          y: 0,
+          scale: 1,
+          rotation: 0,
+          ease: Elastic.easeOut.config(1.2, 0.4),
+        });
+      };
+
+      attachEventsListener();
+    });
+  };
+
+  hoverMouse($(string));
+}
+
+function page4Animation() {
   let tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#page4",
@@ -156,44 +446,88 @@ function page3Animation() {
     },
   });
   tl.to("#marquee-scroll", {
-    transform: "translateX(-150%)",
+    transform: "translateX(-180%)",
   });
 }
 
-function page4Animation() {
+function page5Animation() {
   document.querySelectorAll(".box").forEach((box) => {
     box.addEventListener("mousemove", (e) => {
       const img = box.querySelector("img");
       const rect = box.getBoundingClientRect();
-      const x = e.clientX - rect.left - img.width / 2 + 120 ;
-      const y = e.clientY - rect.top - img.height / 2 + 120 ;
+      const x = e.clientX - rect.left - img.width / 2 + 120;
+      const y = e.clientY - rect.top - img.height / 2 + 120;
       // img.style.transform = `translate(${x}px, ${y}px)`;
 
-      gsap.to(img,{
+      gsap.to(img, {
         duration: 0.3,
         x: x,
         y: y,
-        ease: 'power1.out'
-      })
+        ease: "power1.out",
+      });
     });
 
-  box.addEventListener("mouseleave", () => {
-    gsap.to(img, {
-      duration: 0.3,
-      opacity: 0,
-      ease: 'power1.out'
-    });
-  }),
+    box.addEventListener("mouseleave", () => {
+      gsap.to(img, {
+        duration: 0.3,
+        opacity: 0,
+        ease: "power1.out",
+      });
+    }),
+      box.addEventListener("mouseenter", () => {
+        img = box.querySelector("img");
+        img.style.opacity = 1;
+      });
+  });
 
-  box.addEventListener("mouseenter", () => {
-    img = box.querySelector("img");
-    img.style.opacity = 1;
-  })
-})
+  document
+    .querySelectorAll("#page5 #page5-header h2, #page5 #page5-header button")
+    .forEach((elem) => {
+      elem.addEventListener("mouseenter", () => {
+        gsap.to(cursor, {
+          height: "33px",
+          width: "33px",
+        });
+      });
+      elem.addEventListener("mouseleave", () => {
+        gsap.to(cursor, {
+          height: "16px",
+          width: "16px",
+        });
+      });
+    });
+}
+
+function footerAnimation() {
+  document
+    .querySelectorAll(
+      "#footer #footer-part2 #footer-part2-left form button, #footer #footer-part2 #footer-part2-right>h3, #footer #footer-part2 #footer-part2-right a"
+    )
+    .forEach((elem) => {
+      elem.addEventListener("mouseenter", () => {
+        gsap.to(cursor, {
+          height: "33px",
+          width: "33px",
+        });
+      });
+      elem.addEventListener("mouseleave", () => {
+        gsap.to(cursor, {
+          height: "16px",
+          width: "16px",
+        });
+      });
+    });
 }
 
 loco();
 page1Animation();
 page2Animation();
-page3Animation();
 page4Animation();
+page5Animation();
+cursorAnimation();
+navAnimation();
+videoAnimation();
+featuredDiv();
+hoverButton("#btn-circle");
+hoverButton("#footer #footer-part1 #btn-circle");
+footerAnimation();

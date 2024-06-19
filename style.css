@@ -36,6 +36,23 @@ h1 {
   transition: background-color ease-out 0.4s;
 }
 
+#cursor {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background-color: #edbfff;
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  padding-top: 2.2px;
+}
+
 #nav {
   display: flex;
   justify-content: space-between;
@@ -51,7 +68,7 @@ h1 {
 }
 
 #nav #logo {
-  width: 33%;
+  cursor: pointer;
 }
 
 #nav #logo img {
@@ -73,7 +90,6 @@ h1 {
 }
 
 #nav #circle-div {
-  width: 33%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -84,6 +100,44 @@ h1 {
   height: 1.2vw;
   border-radius: 50%;
   background-color: #fff;
+}
+
+.purple {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  background-color: #edbfff;
+  position: absolute;
+  z-index: 9;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.marquee-container{
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  position: absolute;
+  top: 45%;
+  animation: marquee 4s linear infinite;
+}
+
+.marquee-container h4{
+  font-size: 6vw;
+  display: inline-block;
+  white-space: nowrap;
+  margin-right: 20px;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 #page1 {
@@ -120,6 +174,7 @@ h2 {
   object-fit: cover;
   object-position: center;
   margin-top: 5vw;
+  cursor: pointer;
 }
 
 #page2 {
@@ -129,14 +184,14 @@ h2 {
   color: #000;
   padding: 10vw 0 8vw 6%;
   border-bottom: 1px solid #222;
+  isolation: isolate;
 }
 
 #page2 h2 {
   font-size: 2.8vw;
   width: 66%;
   font-weight: 600;
-  color: #fff;
-  mix-blend-mode: difference;
+  color: #000;
   text-transform: uppercase;
 }
 
@@ -267,11 +322,24 @@ h2 {
   height: 90vh;
   width: 32%;
   overflow: hidden;
+
 }
 
 .card .img-div {
   height: 90%;
   width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card .img-div:hover img {
+  scale: 1.05;
+  filter: blur(3px);
+}
+
+.card .img-div:hover video {
+  transform: scale(1.1);
+  filter: blur(3px);
 }
 
 .card .img-div img,
@@ -280,6 +348,7 @@ video {
   width: 100%;
   object-fit: cover;
   object-position: center;
+  transition: all ease-out 0.4s;
 }
 
 .card .card-content h4 {
@@ -366,7 +435,6 @@ a {
   height: 12vw;
   width: 12vw;
   background-color: #edbfff;
-  transform: none;
   border-radius: 50%;
   font-size: 1vw;
   color: #000;
@@ -374,6 +442,13 @@ a {
   align-items: center;
   justify-content: center;
   transition: all ease-out 0.3s;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+#btn-circle:hover {
+  background-color: #fff;
+  color: #000;
 }
 
 #marquee-scroll {
@@ -391,7 +466,8 @@ a {
   display: inline-block;
   white-space: wrap;
   width: 40%;
-  margin-right: 22vw;
+  margin-right: 25vw;
+  vertical-align: top;
 }
 
 .scroll-item .number {
@@ -411,8 +487,24 @@ a {
   mix-blend-mode: difference;
 }
 
+#scroll1{
+  width: 40%;
+}
+
+#scroll2{
+  width: 45%;
+}
+
+#scroll3{
+  width: 50%;
+}
+
+#scroll4{
+ width: 45%; 
+}
+
 #progress {
-  width: 250%;
+  width: 300%;
   height: 1px;
   position: absolute;
   background-color: #ffffff65;
@@ -510,14 +602,14 @@ h5 {
   color: #fff;
 }
 
-#footer{
+#footer {
   background-color: #edbfff;
   height: 100vh;
   width: 100vw;
   padding: 4vw 9vw 0vw 6vw;
 }
 
-#footer-part1{
+#footer-part1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -525,37 +617,37 @@ h5 {
   padding-bottom: 4vw;
 }
 
-#footer-part1 h1{
+#footer-part1 h1 {
   text-transform: uppercase;
   width: 60%;
   font-size: 2.8vw;
 }
 
-#btn-circle{
+#btn-circle {
   background-color: #fff;
   cursor: pointer;
 }
 
-#footer-part2{
+#footer-part2 {
   display: flex;
   justify-content: space-between;
   padding-top: 6vw;
   width: 100%;
 }
 
-#footer-part2-left{
+#footer-part2-left {
   display: flex;
   flex-direction: column;
   gap: 3vw;
   width: 36%;
 }
 
-#footer-part2-left h3{
+#footer-part2-left h3 {
   font-weight: 600;
   font-size: 1.5vw;
 }
 
-form{
+form {
   display: flex;
   border-bottom: 1px solid #000;
   width: 100%;
@@ -563,7 +655,7 @@ form{
   justify-content: space-between;
 }
 
-form input{
+form input {
   border: none;
   background-color: transparent;
   margin-bottom: 0.5vw;
@@ -571,18 +663,18 @@ form input{
   font-size: 1.2vw;
 }
 
-form input::placeholder{
+form input::placeholder {
   font-size: 1.2vw;
 }
 
-form input:focus{
+form input:focus {
   outline: none;
   border: none;
 }
 
-form button{
+form button {
   border: 1px solid #000;
-  padding: 0.6vw 1.4vw 0.4vw 1.4vw ;
+  padding: 0.6vw 1.4vw 0.4vw 1.4vw;
   color: #000;
   border-radius: 50px;
   background-color: transparent;
@@ -591,53 +683,53 @@ form button{
   margin-bottom: 0.5vw;
 }
 
-form button:hover{
+form button:hover {
   color: #000;
   background-color: #fff;
   border: 1px solid #fff;
 }
 
-#footer-part2-left p{
+#footer-part2-left p {
   font-size: 1vw;
   margin-top: 9vw;
 }
 
-#footer-part2-right{
+#footer-part2-right {
   display: flex;
   flex-direction: column;
   gap: 3vw;
 }
 
-#footer-part2-right h3{
+#footer-part2-right h3 {
   font-size: 1.6vw;
 }
 
-#footer-part2-right #links-container{
+#footer-part2-right #links-container {
   display: flex;
   gap: 3vw;
 }
 
-.links{
+.links {
   display: flex;
   flex-direction: column;
   gap: 1.5vw;
   font-weight: 100;
 }
 
-.links h5{
+.links h5 {
   font-weight: 100;
   font-size: 1.2vw;
 }
 
-.links ul{
+.links ul {
   list-style: none;
 }
 
-.links ul li{
+.links ul li {
   font-size: 1.2vw;
   padding-bottom: 5px;
 }
 
-.links ul li a{
+.links ul li a {
   color: #000;
 }
